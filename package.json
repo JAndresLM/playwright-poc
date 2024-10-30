@@ -1,0 +1,18 @@
+{
+  "name": "playwright-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test":"npx playwright test --headed --project=chromium",
+    "test:file":"npx playwright test --headed --project=chromium tests/ui/duckduck-search.spec.ts",
+    "test:api":"npx playwright test --headed --project=chromium tests/api/duckduck-endpoint.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.4"
+  }
+}
