@@ -13,14 +13,9 @@ test.describe('Search Functionality', () => {
     })
 
     test('Verify search results contains keyword entered in searchbox', async ({ page }) => {
-        //arrange
         let searchTerm: string = 'Android'
-
-        //act
         await startPage.typeSearchCriteria(searchTerm)
         await startPage.search()
-
-        //assert
         expect(page.url()).toContain(searchTerm)
 
         let textContents = await resultsPage.getListOfResultsTitle()
@@ -30,12 +25,10 @@ test.describe('Search Functionality', () => {
     })
 
     test('Verify regions options are greater than 10', async ({ page }) => {
-        // act
         await startPage.typeSearchCriteria('Windows')
         await startPage.search()
         await resultsPage.openRegionsModal()
 
-        //assert
         let regions = await resultsPage.getListOfRegions()
         expect(regions.length-1).toBeGreaterThan(10)
     })
