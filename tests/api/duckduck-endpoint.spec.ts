@@ -6,17 +6,22 @@ test('Verify Icon URL data is present on get endpoint', async ({ request }) => {
 
     expect(response.ok()).toBeTruthy();
     const data = await response.json();
-    let topics = data.RelatedTopics
-    topics.forEach((topic) => {
-        const iconURL = topic.Icon?.URL;
-        if (iconURL) {
-            console.log(`Icon URL: ${iconURL}`);
-        } else {
-            if ('Icon' in topic.Topics && 'URL' in topic.Topics.Icon){
-                console.log(`New Icon URL: ${topic.Topics.Icon.URL}`);
+    printURLs(data)
+});
+
+function printURLs(obj) {
+    if (Array.isArray(obj)) {
+        obj.forEach(item => printURLs(item));
+    } else if (typeof obj === 'object' && obj !== null) {
+        if ('URL' in obj && obj.URL) {
+            console.log(obj.URL);
+        }
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                printURLs(obj[key]);
             }
         }
-    });
-});
+    }
+}
 
 
