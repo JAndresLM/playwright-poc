@@ -24,13 +24,21 @@ test.describe('Search Functionality', () => {
         });
     })
 
-    test('Verify regions options are greater than 10', async ({ page }) => {
+    test.only('Verify regions options are greater than 10', async ({ page }) => {
         await startPage.typeSearchCriteria('Windows')
         await startPage.search()
         await resultsPage.openRegionsModal()
 
         let regions = await resultsPage.getListOfRegions()
         expect(regions.length-1).toBeGreaterThan(10)
+
+        //await resultsPage.selectRegion(1)
+        await resultsPage.selectRegionByName('Argentina')
+        //await page.waitForSelector("//div[@role='switch']")
+        await expect(page.getByRole('switch')).toBeVisible();
+        let titles = await resultsPage.getListOfResultsTitle()
+        expect(titles[0]).toContain('Descargar')
+
     })
 })
 

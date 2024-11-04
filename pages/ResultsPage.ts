@@ -24,4 +24,16 @@ export class ResultsPage extends AbstractPage {
         await this.page.waitForSelector(resultTitleSelector)
         return await this.page.locator(resultTitleSelector).allInnerTexts()
     }
+
+    async selectRegion(position: number) {
+        let regions = await this.getListOfRegions()
+        await regions[position].click()
+    }
+
+    async selectRegionByName(name: string) {
+        await this.page.getByText(name).click();
+    }
+
+
+    
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "test":"npx playwright test --headed --project=chromium",
     "test:ui":"npx playwright test --headed --project=chromium tests/ui/duckduck-search.spec.ts",
+    "test:debug":"npx playwright test --headed --debug --project=chromium tests/ui/duckduck-search.spec.ts",
     "test:api":"npx playwright test --headed --project=chromium tests/api/duckduck-endpoint.spec.ts"
   },
   "keywords": [],
